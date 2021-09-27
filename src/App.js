@@ -14,7 +14,7 @@ function App(props) {
       <main>
         <Switch>
           <Route path="/" exact>
-            <Redirect to="./register" />
+            <Redirect to="./aboutus" />
           </Route>
           <Route path="/register">
             <InputForm />

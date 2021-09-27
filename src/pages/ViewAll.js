@@ -7,7 +7,7 @@ const ViewAll = (props) => {
   console.log(inputs)
  
   return (<div>
-    <h2>View All Entries here:</h2>
+    <h3>View All Entries here:</h3>
     {inputs && Object.keys(inputs).map((inputKey) => ( 
       <div key={inputKey}>
         <p>First Name: {inputs[inputKey].fName}</p>

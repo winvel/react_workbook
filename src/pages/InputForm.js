@@ -86,7 +86,6 @@ const InputForm = () => {
   const birthdayBlurHandler = () => {
     setEnteredBirthdayTouch(true);
   };
-  
 
   const [inputData, setInputData] = useState([
     {
@@ -109,7 +108,6 @@ const InputForm = () => {
     formValid = true;
   }
 
-
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -126,7 +124,7 @@ const InputForm = () => {
       birthday: enteredBirthday,
     };
 
-    const allInputData = [...inputData, newInputData]
+    const allInputData = [...inputData, newInputData];
 
     setInputData(allInputData);
 
@@ -135,10 +133,11 @@ const InputForm = () => {
     fetch("http://localhost:3001/inputData/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify[(allInputData)],
+      body: JSON.stringify[allInputData],
     }).then(() => {
       console.log("new post added");
-    });  
+      alert("Success!")
+    });
 
     setEnteredFName("");
     setEnteredFNameTouch(false);
@@ -154,9 +153,9 @@ const InputForm = () => {
 
   useEffect(() => {
     fetch("http://localhost:3001/inputData")
-      .then(response => {
-        if(!response.ok) {
-          throw Error('Could not fetch the data from the server.')
+      .then((response) => {
+        if (!response.ok) {
+          throw Error("Could not fetch the data from the server.");
         }
         return response.json();
       })
@@ -164,8 +163,8 @@ const InputForm = () => {
         console.log(data);
         setInputData(data);
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
@@ -185,7 +184,9 @@ const InputForm = () => {
             onBlur={fNameBlurHandler}
             value={enteredFName}
           />
-          {enteredFNameInvalid && <p>First Name is required.</p>}
+          {enteredFNameInvalid && (
+            <p className="error-text">First Name is required.</p>
+          )}
         </div>
         <div>
           <label>Last Name</label>
@@ -197,7 +198,9 @@ const InputForm = () => {
             onBlur={lNameBlurHandler}
             value={enteredLName}
           />
-          {enteredLNameInvalid && <p>Last Name is required.</p>}
+          {enteredLNameInvalid && (
+            <p className="error-text">Last Name is required.</p>
+          )}
         </div>
       </div>
       <div>
@@ -210,7 +213,9 @@ const InputForm = () => {
           onBlur={emailBlurHandler}
           value={enteredEmail}
         />
-        {enteredEmailInvalid && <p>Email is required.</p>}
+        {enteredEmailInvalid && (
+          <p className="error-text">Email is required.</p>
+        )}
       </div>
       <div>
         <label>EID</label>
@@ -224,7 +229,7 @@ const InputForm = () => {
           onBlur={eidBlurHandler}
           value={enteredEid}
         />
-        {enteredEidNotFilled && <p>EID is required.</p>}
+        {enteredEidNotFilled && <p className="error-text">EID is required.</p>}
       </div>
       <div>
         <label>Birthday</label>
@@ -236,7 +241,9 @@ const InputForm = () => {
           onBlur={birthdayBlurHandler}
           value={enteredBirthday}
         />
-        {enteredBirthdayNotFilled && <p>Birthday is required.</p>}
+        {enteredBirthdayNotFilled && (
+          <p className="error-text">Birthday is required.</p>
+        )}
       </div>
       <div>
         <button
@@ -246,8 +253,7 @@ const InputForm = () => {
         >
           Submit
         </button>
-        <div></div>
-        {inputData && <ViewAll inputs={inputData} />}
+        <div>{inputData && <ViewAll inputs={inputData} />}</div>
       </div>
     </form>
   );

@@ -40,6 +40,53 @@ body {
   display: block;
 }
 
+button {
+  font: inherit;
+  background-color: #240370;
+  color: rgb(228, 222, 222);
+  border: 1px solid #240370;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  background-color: #3d1e85;
+  border-color: #dcd9e2;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color:#888585;
+  color:#3f3f3f;
+  border-color:#3f3f3f;
+  cursor: not-allowed;
+}
+
+.form-actions {
+  text-align: right;
+}
+
+.form-actions button {
+  margin-left: 1rem;
+}
+
+.invalid input {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.invalid input:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
+.error-text {
+  color: #b40e0e;
+}
+
 
 
 /* 
