@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ViewAll from "./ViewAll";
 
-const InputForm = () => {
+const InputForm = (props) => {
   //First Name Validation
   const [enteredFName, setEnteredFName] = useState("");
   const [enteredFNameTouch, setEnteredFNameTouch] = useState(false);
@@ -128,7 +128,7 @@ const InputForm = () => {
 
     setInputData(allInputData);
 
-    console.log(allInputData);
+    // console.log(allInputData);
 
     fetch("http://localhost:3001/inputData/", {
       method: "POST",
@@ -136,7 +136,7 @@ const InputForm = () => {
       body: JSON.stringify[allInputData],
     }).then(() => {
       console.log("new post added");
-      alert("Success!")
+      alert("Success!");
     });
 
     setEnteredFName("");
@@ -160,7 +160,7 @@ const InputForm = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setInputData(data);
       })
       .catch((err) => {
@@ -168,6 +168,7 @@ const InputForm = () => {
       });
   }, []);
 
+  
   return (
     <form onSubmit={formSubmitHandler} className="input-group">
       <div>
@@ -208,7 +209,6 @@ const InputForm = () => {
         <input
           type="email"
           required
-          id="email"
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
           value={enteredEmail}
@@ -224,7 +224,6 @@ const InputForm = () => {
           required
           min="1"
           step="1"
-          id="eid"
           onChange={eidChangeHandler}
           onBlur={eidBlurHandler}
           value={enteredEid}
@@ -236,7 +235,6 @@ const InputForm = () => {
         <input
           type="date"
           required
-          id="birthday"
           onChange={birthdayChangeHandler}
           onBlur={birthdayBlurHandler}
           value={enteredBirthday}

@@ -50,13 +50,19 @@ button {
   cursor: pointer;
 }
 
+button:disabled
+{
+  background-color: rgb(131, 127, 127);
+  color:rgb(70, 70, 70)
+}
+
 button:hover,
 button:active {
   background-color: #3d1e85;
   border-color: #dcd9e2;
 }
 
-button:disabled,
+
 button:disabled:hover,
 button:disabled:active {
   background-color:#888585;
