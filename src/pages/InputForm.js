@@ -86,6 +86,7 @@ const InputForm = () => {
   const birthdayBlurHandler = () => {
     setEnteredBirthdayTouch(true);
   };
+  
 
   const [inputData, setInputData] = useState([
     {
@@ -117,30 +118,27 @@ const InputForm = () => {
       return;
     }
 
-    setInputData({
+    const newInputData = {
       fName: enteredFName,
       lName: enteredLName,
       email: enteredEmail,
       eid: enteredEid,
-      birthday: enteredBirthday
-    });
+      birthday: enteredBirthday,
+    };
 
-    console.log(inputData);
-    console.log(
-      enteredFName,
-      enteredLName,
-      enteredEmail,
-      enteredEid,
-      enteredBirthday
-    );
+    const allInputData = [...inputData, newInputData]
 
-/*     fetch("http://localhost:3001/inputData", {
+    setInputData(allInputData);
+
+    console.log(allInputData);
+
+    fetch("http://localhost:3001/inputData/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(inputData),
+      body: JSON.stringify[(allInputData)],
     }).then(() => {
       console.log("new post added");
-    });  */   
+    });  
 
     setEnteredFName("");
     setEnteredFNameTouch(false);
@@ -158,7 +156,7 @@ const InputForm = () => {
     fetch("http://localhost:3001/inputData")
       .then(response => {
         if(!response.ok) {
-          throw Error('Could not fetch the data')
+          throw Error('Could not fetch the data from the server.')
         }
         return response.json();
       })
@@ -170,7 +168,6 @@ const InputForm = () => {
         console.log(err)
       });
   }, []);
-
 
   return (
     <form onSubmit={formSubmitHandler} className="input-group">

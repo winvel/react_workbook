@@ -3,6 +3,8 @@ import React from "react";
 const ViewAll = (props) => {
 
   const inputs = props.inputs;
+
+  console.log(inputs)
  
   return (<div>
     <h2>View All Entries here:</h2>
@@ -13,8 +15,8 @@ const ViewAll = (props) => {
         <p>Email: {inputs[inputKey].email}</p>
         <p>EID: {inputs[inputKey].eid}</p>
         <p>Birthday: {inputs[inputKey].birthday}</p>
+        <p>--------</p>
       </div>
-      
     ))}
   </div>);
 }
