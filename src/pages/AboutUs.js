@@ -7,7 +7,7 @@ const AboutUs = () => {
       <h2>About Us</h2>
       <p>A simple record to enter and view your basic work details.</p>
       <p>Click below to register.</p>
-     <button><NavLink to="./register">Register Now</NavLink></button>
+     <NavLink to="./register"><button>Register Now</button></NavLink>
     </div>
   );
 };
