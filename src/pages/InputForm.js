@@ -25,7 +25,7 @@ const InputForm = (props) => {
   const [enteredLNameTouch, setEnteredLNameTouch] = useState(false);
 
   const enteredLNameFilled = enteredLName.trim() !== "";
-  const enteredLNameNotFilled = !enteredFNameFilled && enteredLNameTouch;
+  const enteredLNameNotFilled = !enteredLNameFilled && enteredLNameTouch;
 
   const enteredLNameValid = /^[A-Za-z\s]+$/.test(enteredLName);
   const enteredLNameInvalid = !enteredLNameValid && enteredLNameNotFilled;
@@ -133,9 +133,15 @@ const InputForm = (props) => {
     fetch("http://localhost:3001/inputData/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify[allInputData],
-    }).then(() => {
-      console.log("new post added");
+      body: JSON.stringify({
+        "fName": enteredFName,
+        "lName": enteredLName,
+        "email": enteredEmail,
+        "eid": enteredEid,
+        "birthday": enteredBirthday
+      }),
+    }).then((res) => {
+      console.log("new post added", res);
       alert("Success!");
     });
 
@@ -151,8 +157,13 @@ const InputForm = (props) => {
     setEnteredBirthdayTouch(false);
   };
 
+ 
+
   useEffect(() => {
-    fetch("http://localhost:3001/inputData")
+    fetch(`http://localhost:3001/inputData`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
       .then((response) => {
         if (!response.ok) {
           throw Error("Could not fetch the data from the server.");
@@ -166,7 +177,7 @@ const InputForm = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setInputData]);
 
   
   return (
@@ -208,6 +219,7 @@ const InputForm = (props) => {
         <label>Email</label>
         <input
           type="email"
+          id="email"
           required
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
@@ -221,6 +233,7 @@ const InputForm = (props) => {
         <label>EID</label>
         <input
           type="number"
+          id="birthday"
           required
           min="1"
           step="1"
